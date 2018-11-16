@@ -124,8 +124,6 @@ def depthFirstSearch(problem):
         actions.insert(0,current_node["action"])
         current_node=current_node["parent"]
 
-    print actions
-
     return  actions
 
     util.raiseNotDefined()
@@ -133,6 +131,21 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
+
+    closed = []
+    fringe = util.Queue();
+    current_state = problem.getStartState()
+    current_node = dict()
+    current_node["state"] = current_state
+    current_node["parent"] = None
+    current_node["action"] = None
+    fringe.push(current_node)
+    flag = bool()
+
+    while not fringe.isEmpty():
+        
+
+
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
