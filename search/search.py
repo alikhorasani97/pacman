@@ -91,8 +91,8 @@ def depthFirstSearch(problem):
     print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     testvar=problem.getSuccessors(problem.getStartState())
-    print type(testvar[0])
-    print getAction(problem)
+    test2 = testvar[0][0]
+    print type(test2)
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
