@@ -150,6 +150,7 @@ def breadthFirstSearch(problem):
     while not fringe.isEmpty():
         current_node = fringe.pop()
         current_state = current_node["state"]
+
         for nodeClosed in closed:
             if nodeClosed["state"] == current_state:
                 flag = True
@@ -183,6 +184,36 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
+
+    closed = []
+    fringe = util.PriorityQueue()
+    current_state = problem.getStartState()
+    current_node = dict()
+    current_node["state"] = current_state
+    current_node["parent"] = None
+    current_node["action"] = None
+    current_node["cost"] = 0
+    fringe.push(current_node)
+    flag = bool()
+
+    while not fringe.isEmpty():
+        current_node = fringe.pop()
+        current_state = current_node["state"]
+
+        for nodeClosed in closed:
+            if nodeClosed["state"] == current_state:
+                flag = True
+                break
+
+        if flag:
+            flag = False
+            continue
+
+        if problem.isGoalState(current_state):
+            break
+
+
+
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
