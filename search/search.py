@@ -99,10 +99,10 @@ def depthFirstSearch(problem):
     flag = bool()
 
 
-    while not fringe.isEmpty()
+    while not fringe.isEmpty():
         current_node = fringe.pop()
         state = current_node["state"]
-        for nodeClosed in closed
+        for nodeClosed in closed:
             if nodeClosed["state"] == state:
                 flag = 1
 
@@ -113,12 +113,19 @@ def depthFirstSearch(problem):
         if problem.isGoalState():
             break
 
-        for child in  problem.getSuccessors(state)
+        for child in  problem.getSuccessors(state):
             fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
 
         closed.insert(0,current_node)
 
-    while
+    actions = []
+    while true:
+        if current_node == null:
+            break
+        actions.append(0,current_node["action"])
+        current_node=current_node["parent"]
+
+    print actions
 
     util.raiseNotDefined()
 
