@@ -101,19 +101,20 @@ def depthFirstSearch(problem):
 
     while not fringe.isEmpty():
         current_node = fringe.pop()
-        state = current_node["state"]
+        current_state = current_node["state"]
         for nodeClosed in closed:
-            if nodeClosed["state"] == state:
-                flag = 1
+            if nodeClosed["state"] == current_state:
+                flag = True
+                break
 
-        if flag == 1:
-            flag = 0
+        if flag:
+            flag = False
             continue
 
-        if problem.isGoalState(state):
+        if problem.isGoalState(current_state):
             break
 
-        for child in  problem.getSuccessors(state):
+        for child in  problem.getSuccessors(current_state):
             fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
         closed.insert(0,current_node)
 
@@ -143,7 +144,20 @@ def breadthFirstSearch(problem):
     flag = bool()
 
     while not fringe.isEmpty():
+        current_node = fringe.pop()
+        current_state = current_node["state"]
+        for nodeClosed in closed:
+            if nodeClosed["state"] == current_state:
+                flag = True
+                break
+
+        if flag:
+            flag = False
+            continue
+
         
+
+
 
 
     util.raiseNotDefined()
