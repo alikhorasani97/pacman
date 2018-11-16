@@ -87,7 +87,6 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
     "*** YOUR CODE HERE ***"
-
     closed = []
     fringe = util.Stack()
     current_state = problem.getStartState()
@@ -114,8 +113,13 @@ def depthFirstSearch(problem):
         if problem.isGoalState(current_state):
             break
 
+        tempStck = util.Stack()
         for child in  problem.getSuccessors(current_state):
-            fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
+            tempStck.push({"state":child[0],"parent":current_node,"action":child[1]})
+
+        while not tempStck.isEmpty():#bra dorost kardane tartibe azafe shodane child ha
+            fringe.push(tempStck.pop())
+
         closed.insert(0,current_node)
 
     actions = []
@@ -155,8 +159,22 @@ def breadthFirstSearch(problem):
             flag = False
             continue
 
-        
+        if problem.isGoalState(current_state):
+            break
 
+        for child in  problem.getSuccessors(current_state):
+            fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
+
+        closed.insert(0,current_node)
+
+    actions = []
+    while True:
+        if current_node["action"] == None:
+            break
+        actions.insert(0, current_node["action"])
+        current_node = current_node["parent"]
+
+    return actions
 
 
 
