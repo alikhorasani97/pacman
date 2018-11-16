@@ -96,9 +96,21 @@ def depthFirstSearch(problem):
     current_node["parent"] = null
     current_node["action"] = null
     fringe.push(current_node)
+    flag = bool()
+
 
     while not fringe.isEmpty()
+        current_node = fringe.pop()
+        state = current_node["state"]
+        for nodeClosed in closed
+            if nodeClosed["state"] == state:
+                flag = 1
 
+        if flag == 1:
+            flag = 0
+            continue
+
+        
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
