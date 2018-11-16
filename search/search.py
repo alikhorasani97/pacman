@@ -193,7 +193,7 @@ def uniformCostSearch(problem):
     current_node["parent"] = None
     current_node["action"] = None
     current_node["cost"] = 0
-    fringe.push(current_node)
+    fringe.push(current_node,current_node["cost"])
     flag = bool()
 
     while not fringe.isEmpty():
@@ -211,6 +211,20 @@ def uniformCostSearch(problem):
 
         if problem.isGoalState(current_state):
             break
+
+        for child in problem.getSuccessors(current_state):
+            fringe.push({"state": child[0], "parent": current_node, "action": child[1],"cost":child[2]+current_node["cost"]},child[2]+current_node["cost"])
+
+        closed.insert(0, current_node)
+
+    actions = []
+    while True:
+        if current_node["action"] == None:
+            break
+        actions.insert(0, current_node["action"])
+        current_node = current_node["parent"]
+
+    return actions
 
 
 
