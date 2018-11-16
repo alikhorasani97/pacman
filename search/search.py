@@ -93,8 +93,8 @@ def depthFirstSearch(problem):
     current_state = problem.getStartState()
     current_node = dict()
     current_node["state"]  = current_state
-    current_node["parent"] = null
-    current_node["action"] = null
+    current_node["parent"] = None
+    current_node["action"] = None
     fringe.push(current_node)
     flag = bool()
 
@@ -110,7 +110,7 @@ def depthFirstSearch(problem):
             flag = 0
             continue
 
-        if problem.isGoalState():
+        if problem.isGoalState(state):
             break
 
         for child in  problem.getSuccessors(state):
@@ -119,10 +119,10 @@ def depthFirstSearch(problem):
         closed.insert(0,current_node)
 
     actions = []
-    while true:
-        if current_node == null:
+    while True:
+        if current_node == None:
             break
-        actions.append(0,current_node["action"])
+        actions.insert(0,current_node["action"])
         current_node=current_node["parent"]
 
     print actions
