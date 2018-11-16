@@ -110,7 +110,10 @@ def depthFirstSearch(problem):
             flag = 0
             continue
 
+        for child in  problem.getSuccessors(state)
+            fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
         
+
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
