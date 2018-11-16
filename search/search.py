@@ -240,6 +240,55 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
+
+    closed = []
+    closed = []
+    fringe = util.PriorityQueue()
+    current_state = problem.getStartState()
+    current_node = dict()
+    current_node["state"] = current_state
+    current_node["parent"] = None
+    current_node["action"] = None
+    current_node["g"] = 0
+    current_node["h"] = heuristic(current_state,problem)
+    current_node["f"] = heuristic(current_state,problem)
+    fringe.push(current_node, current_node["f"])
+    flag = bool()
+
+    while not fringe.isEmpty():
+        current_node = fringe.pop()
+        current_state = current_node["state"]
+
+        for nodeClosed in closed:
+            if nodeClosed["state"] == current_state:
+                flag = True
+                break
+
+        if flag:
+            flag = False
+            continue
+
+        if problem.isGoalState(current_state):
+            break
+
+        for child in problem.getSuccessors(current_state):
+            fringe.push({"state": child[0], "parent": current_node, "action": child[1],
+                         "g": child[2] + current_node["g"],"h":heuristic(child[0],problem),
+                         "f":child[2] + current_node["g"]+heuristic(child[0],problem)},
+                        child[2] + current_node["g"]+heuristic(child[0],problem))
+
+        closed.insert(0, current_node)
+
+    actions = []
+    while True:
+        if current_node["action"] == None:
+            break
+        actions.insert(0, current_node["action"])
+        current_node = current_node["parent"]
+
+    return actions
+
+
     util.raiseNotDefined()
 
 
