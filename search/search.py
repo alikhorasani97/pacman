@@ -110,9 +110,15 @@ def depthFirstSearch(problem):
             flag = 0
             continue
 
+        if problem.isGoalState():
+            break
+
         for child in  problem.getSuccessors(state)
             fringe.push({"state":child[0],"parent":current_node,"action":child[1]})
-        
+
+        closed.insert(0,current_node)
+
+    while
 
     util.raiseNotDefined()
 
